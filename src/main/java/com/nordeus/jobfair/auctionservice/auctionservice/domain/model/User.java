@@ -7,18 +7,15 @@ import lombok.Getter;
 @AllArgsConstructor
 public class User {
 
-
-
     private final UserId userId;
 
     private int tokenBalance;
 
-    private void decrementTokenBalance() {
+    public void decrementTokenBalance() {
         this.tokenBalance--;
+
     }
 
-    public int getUserId() {
-        return userId.getValue();
-    }
+
 
 }

@@ -11,9 +11,11 @@ public interface AuctionService {
 
     Collection<Auction> getAllActive();
 
-    Auction getAuction(int auctionId); //I changed this argument so that I can use REST integer parameter
+    Auction getAuction(int auctionId); //I changed this argument type so that I can use REST integer parameter
+
+    User getUser(int userId);
 
     void join(AuctionId auctionId, User user);
 
-    void bid(AuctionId auctionId, UserId userId);
+    void bid(int auctionId, int userId); //I changed arguments type so that I can use REST integer parameter
 }

@@ -23,5 +23,6 @@ public class Auction {
 
     public void incrementPlayerPrice() {this.playerPrice++;}
 
-    public void extendAuctionDuration() {this.duration = 5;}
+    public void tick() {this.duration--;}
+
 }
