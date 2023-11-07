@@ -32,7 +32,14 @@ public class AuctionServiceImpl implements AuctionService, Runnable{
         for (int i = 0; i < 10; i++)
         {
             auctions.add(new Auction(new AuctionId(), 60, 1,true, new LinkedList<>()));
+            this.join(auctions.get(i).getAuctionId(), users.get(i));
         }
+    }
+
+    private void generateUsers()
+    {
+        for (int i = 0; i < 10; i++)
+            users.add(new User(new UserId(), 5));
     }
 
     public AuctionServiceImpl()
@@ -40,18 +47,11 @@ public class AuctionServiceImpl implements AuctionService, Runnable{
         auctionNotifer = new AuctionNotifierLogger();
         auctions = new LinkedList<>();
         users = new LinkedList<>();
-        //initial 10 active auctions
 
-        generateAuctions();
 
-        //Initial 10 registered players to be joined in auctions generated above
-
-        for (int i = 0; i < 10; i++)
-        {
-            users.add(new User(new UserId(), 5));
-            this.join(auctions.get(i).getAuctionId(), users.get(i));
-        }
-
+        this.generateUsers();
+        //Initial 10 registered players to be joined in auctions generated below
+        this.generateAuctions();
 
     }
 
