@@ -22,7 +22,7 @@ public class HttpController {
     @GetMapping("/{auctionId}")
     public Auction getAuction(@PathVariable int auctionId) {return auctionService.getAuction(auctionId);}
 
-    @PostMapping("/{userId}/{auctionId}")
+    @PostMapping("/bid/{userId}/{auctionId}")
     public void bid(@PathVariable int userId, @PathVariable int auctionId) {auctionService.bid(auctionId,userId);}
 
 

@@ -32,7 +32,7 @@ public class AuctionServiceImpl implements AuctionService, Runnable{
         for (int i = 0; i < 10; i++)
         {
             auctions.add(new Auction(new AuctionId(), 60, 1,true, new LinkedList<>()));
-            this.join(auctions.get(i).getAuctionId(), users.get(i));
+            this.join(auctions.getLast().getAuctionId(), users.get(i));
         }
     }
 
@@ -88,7 +88,8 @@ public class AuctionServiceImpl implements AuctionService, Runnable{
 
 
                 if ((int)end-(int)start == 60) {
-                    generateAuctions();
+                    this.generateAuctions();
+                    auctionNotifer.activeAuctionsRefreshed(getAllActive());
                     start = System.nanoTime()/1000000000;
 
                 };
@@ -148,6 +149,7 @@ public class AuctionServiceImpl implements AuctionService, Runnable{
 
         auction.incrementPlayerPrice();
         user.decrementTokenBalance();
+        auction.addBidder(user);
 
         if(auction.getDuration() < 5) auction.setDuration(5);
 
@@ -167,7 +169,6 @@ public class AuctionServiceImpl implements AuctionService, Runnable{
 *
 * Bid method would be synchronized of course.
 *
-* However, having in mind that we were given a springboot application template as a starting point,
 * I've concluded that I shouldn't do that since it would require creating and running multiple (depending on user count) java applications simultaneously.
 * And that does not seem to be what is required of us participants in this challenge.
 *

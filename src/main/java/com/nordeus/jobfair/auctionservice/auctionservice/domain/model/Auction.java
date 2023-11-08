@@ -3,6 +3,7 @@ package com.nordeus.jobfair.auctionservice.auctionservice.domain.model;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.LinkedList;
 
@@ -23,6 +24,12 @@ public class Auction {
 
     public void incrementPlayerPrice() {this.playerPrice++;}
 
+    public void addBidder(User user) {this.bidders.add(user);}
+
     public void tick() {this.duration--;}
 
+    @Override
+    public String toString() {
+        return "Auction " + this.getAuctionId().getValue();
+    }
 }

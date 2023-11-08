@@ -19,12 +19,12 @@ public class AuctionNotifierLogger implements AuctionNotifer {
 
     @Override
     public void bidPlaced(Bid bid) {
-        log.info("Bid placed: {}", bid.toString());
+        log.info("Bid placed: user{} on auction {}", bid.getUserId().getValue(), bid.getAuctionId().getValue());
     }
 
     @Override
     public void activeAuctionsRefreshed(Collection<Auction> activeAuctions) {
-        log.info("Active auctions are refreshed: {}", activeAuctions);
+        log.info("Active auctions are refreshed: {}", activeAuctions.toString());
     }
 
     @Override
